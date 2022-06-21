@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Dragon Travels</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+       
+       <div id="msgBox"></div>
+        <h1>Dragon Travels Desk</h1>
+        <form id="form">
+            <div class="mb-3">
+                <label for="name" class="form-label">Username</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your username">
+                <div class="invalid-feedback" id="namevalid">
+                    Your username must be 2-10 characters long and should not start with a number
+                  </div> 
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter your email">
+              <div class="invalid-feedback" id="emailvalid">
+                Your email must be a valid email ex. example2@hotmail.com
+              </div> 
+            </div>
+            <div class="form-group">
+                <label for="car">Select your car</label>
+                <select class="form-select" id="car">
+                    <!-- <option selected></option> -->
+                    <option>Omni</option>
+                    <option>Maruti 800</option>
+                    <option>Ford Titanium</option>
+                    <option>Audi A4</option>
+                  </select>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Enter your address</label>
+                <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">Enter your phone number</label>
+                <input class="form-control" id="phone" rows="3"></input>
+                <div class="invalid-feedback" id="phonevalid">
+                    Your phone number must be 10 digit long
+                </div> 
+              </div>
+            <div class="mb-3">
+                <label for="msg" class="form-label">Any other message...(optional)</label>
+                <textarea class="form-control" id="msg" rows="3"></textarea>
+              </div>
+            <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+    <div class="container">
+      <table class="table" id="33">
+        <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+
+  </thead>
+<tbody id="tableBody">  </tbody>
+      </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+        <script src="index.js"></script>
+</body>
+
+</html>
