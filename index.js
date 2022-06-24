@@ -3,9 +3,12 @@ console.log('Form Validation using Regular Expressions');
 let namee = document.getElementById('name');
 let email = document.getElementById('email');
 let phone = document.getElementById('phone');
+let address = document.getElementById('address');
+
 let validName = false;
  let validEmail = false;
  let validPhone = false;
+ let validAddress = false;
 // failure.classList.add('d-none')
 // success.classList.add('d-none')
 
@@ -65,32 +68,58 @@ phone.addEventListener('blur', ()=>{
 
      }
 })
+address.addEventListener('blur', ()=>{
+    // console.log('phone is blurred');
+     // validate phone here 
+     let regex = /^([a-z0-9A-Z]+){5,20}$/;
+     let str = address.value;
+     console.log(regex, str);
+     if(regex.test(str)){
+         console.log('address matched');
+         address.classList.remove('is-invalid');
+         validAddress = true;
+     }
+     else{
+         console.log('address not matched');
+         address.classList.add('is-invalid');
+         validAddress = false;
+     }
+})
 
+let forms;
+class Form{
+    constructor(name,email){
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address
+    }
+}
 let submit = document.getElementById('submit');
 submit.addEventListener('click', (e)=>{
-    e.preventDefault();
-    let getName = namee.value;
-    let getEmail = email.value;
-    let getPhone = phone.value;
+let name = document.getElementById('name').value;
+let email = document.getElementById('email').value;
+let phone = document.getElementById('phone').value;
+let address = document.getElementById('address').value;
 
-    // console.log(getName, getEmail,getPhone)
-    let notes = localStorage.getItem('notes');
-    if(notes == null){
-        notesObj= []
-    }else{
-        notesObj = JSON.parse(notes)
-    }
-    console.log(getEmail)
-        notesObj.push(getName,getEmail,getPhone)
-        namee.value = "";
+
+     forms = new Form(name,email,phone,address)
+    let records = new Array();
+    records = JSON.parse(localStorage.getItem('tableBody'))? JSON.parse(localStorage.getItem('tableBody')) : [];
+       records.push({
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'address': address
+       })
+        name.value = '';
         email.value = '';
         phone.value = '';
-        localStorage.setItem("notes", JSON.stringify(notesObj))
-        console.log(notesObj.getEmail)
-    
+        address.value = '';
+        localStorage.setItem('tableBody' ,JSON.stringify(records))
     let msgbox = document.getElementById('msgBox');
-    if(validName && validEmail && validPhone){
-        msgBox.innerHTML = ` <div class="alert alert-success alert-dismissible fade show" id="success" role="alert">
+    if(validName && validEmail && validPhone && validAddress){
+        msgBox.innerHTML += ` <div class="alert alert-success alert-dismissible fade show" id="success" role="alert">
                                 <strong>SuccessFully!</strong> Your form has been submitted.
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                              </div>`
@@ -103,7 +132,7 @@ submit.addEventListener('click', (e)=>{
 
     }
     else{
-        msgbox.innerHTML = ` <div class="alert alert-danger alert-dismissible fade show" id="failure" role="alert">
+        msgbox.innerHTML += ` <div class="alert alert-danger alert-dismissible fade show" id="failure" role="alert">
                                 <strong>Error!</strong> Your form has not been submitted due to Error.
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                              </div>`;
@@ -112,33 +141,30 @@ submit.addEventListener('click', (e)=>{
                             },2000)
         // failure.classList.add('show');
         // success.classList.remove('show');
-
     }
-
-    
+    e.preventDefault();  
 })
 showData()
 function showData(){
-
-let tableBody = document.getElementById('tableBody');
-let notes = localStorage.getItem('notes');
-if(notes == null){
-    notesObj= []
-}else{
-    notesObj = JSON.parse(notes)
-}
+records = localStorage.getItem('tableBody')
+if(records){
+    records = JSON.parse(localStorage.getItem('tableBody'))
 let string = '';
-notesObj.forEach((element,index)=>{
+records.forEach(function(forms,index){
     string += `
     <tr>
-      <th scope="row">${index + 1}</th>
-      <td>${element.getName}</td>
-      <td>${element.getEmail}</td>
-      <td>${element.getPhone}</td>
+      <td>${forms.name}</td>
+      <td>${forms.email}</td>
+      <td>${forms.phone}</td>
+      <td>${forms.address}</td>
+
     </tr>
   `
-  console.log(element.getEmail)
   tableBody.innerHTML = string;
+console.log(forms.email)
+// })
 })
 }
-showData()
+}
+
+
